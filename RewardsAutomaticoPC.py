@@ -14,7 +14,7 @@ def on_press(tecla):
     try:
         if tecla == keyboard.Key.space:  # Se apertar espaço
             parar = True
-            return False  # Para o listener parar
+            return False  # Para o listener parar 
     except:
         pass
 
@@ -29,23 +29,27 @@ print(f"Posição capturada: x={x}, y={y}")
 listener = keyboard.Listener(on_press=on_press)
 listener.start()
 
-# Loop para digitar de 1 até 33
-for numero in range(0, 30):  # Vai de 1 até 33
-    if parar:  # Verifica se o usuário apertou espaço
+# Calcula tempo total estimado (6.7 segundos por iteração)
+tempo_total = 33 * 6.7  # 6.7 segundos é aproximadamente o tempo de cada ciclo
+
+# Loop para digitar de 0 até 33
+for numero in range(0, 33):
+    if parar:
         print("Programa interrompido pelo usuário (tecla espaço).")
         break
 
-    # Clica na posição salva
+    # Calcula tempo restante
+    tempo_restante = (33 - numero) * 6.7
+    minutos = int(tempo_restante // 60)
+    segundos = int(tempo_restante % 60)
+    
+    print(f"Número atual: {numero}/33 - Tempo restante estimado: {minutos}m {segundos}s")
+
     pyautogui.click(x, y)
-    time.sleep(0.2)  # pequena pausa
+    time.sleep(0.2)
 
-    # Digita o número atual
     pyautogui.write(str(numero), interval=0.5)
-
-    # Pressiona Enter
     pyautogui.press('enter')
-
-    # Espera antes de apagar
     time.sleep(6)
 
 print("Execução finalizada.")
