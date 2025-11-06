@@ -42,9 +42,8 @@ for numero in range(0, 33):
     tempo_restante = (33 - numero) * 6.7
     minutos = int(tempo_restante // 60)
     segundos = int(tempo_restante % 60)
-    
     print(f"Número atual: {numero}/33 - Tempo restante estimado: {minutos}m {segundos}s")
-
+    
     pyautogui.click(x, y)
     time.sleep(0.2)
 
